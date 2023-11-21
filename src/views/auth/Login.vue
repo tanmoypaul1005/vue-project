@@ -1,17 +1,9 @@
-<!-- Login.vue -->
 <template>
   <div class="login-container">
     <h1 class="login-title">Login</h1>
     <form @submit.prevent="loginUser" class="login-form">
-      <div class="form-group">
-        <label for="email" class="label">Email</label>
-        <input v-model="credentials.email" type="email" id="email" name="email" class="input" required>
-      </div>
-
-      <div class="form-group">
-        <label for="password" class="label">Password</label>
-        <input v-model="credentials.password" type="password" id="password" name="password" class="input" required>
-      </div>
+      <CommonInput label="Email" name="email" v-model="credentials.email" :is-required="true" />
+      <CommonInput label="Password" name="password" type="password" v-model="credentials.password" :is-required="true" />
 
       <div class="form-group">
         <button type="submit" class="login-button">Login</button>
@@ -21,12 +13,13 @@
 </template>
 
 <script>
-
-import { baseUrl } from '../../utility/source.js';
+import CommonInput from '@/components/CommonInput.vue';
 import { useUserStore } from '@/stores/userStore';
 
 export default {
-
+  components: {
+    CommonInput,
+  },
   data() {
     return {
       credentials: {

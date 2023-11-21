@@ -7,8 +7,6 @@ export const useUtilityStore = defineStore('utility', {
    isLoading: false,
   }),
 
-  // could also be defined as
-  // state: () => ({ count: 0 })
   actions: {
     async setLoading(data=!this.isLoading) {
       this.isLoading=data
