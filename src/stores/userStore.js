@@ -2,7 +2,8 @@
 import { defineStore } from 'pinia';
 import { useUtilityStore } from '@/stores/utility'  // Assuming your utility store file is named utility.js
 import axios from 'axios';
-import { baseUrl } from '../../utility/source.js';
+
+const baseUrl = "http://localhost:8000/api"
 
 export const useUserStore = defineStore({
   id: 'user',
@@ -10,6 +11,8 @@ export const useUserStore = defineStore({
     users: [],
   }),
   actions: {
+
+    
 
     // add user
     async addUser(userData) {
