@@ -21,10 +21,12 @@
 </template>
 
 <script>
-import axios from 'axios';
+
 import { baseUrl } from '../../utility/source.js';
+import { useUserStore } from '@/stores/userStore';
 
 export default {
+
   data() {
     return {
       credentials: {
@@ -35,12 +37,13 @@ export default {
   },
   methods: {
     async loginUser() {
+      const userStore = useUserStore();
       try {
-        const response = await axios.post(baseUrl +"/login", this.credentials);
-        console.log(response.data);
-        // Handle success, e.g., store token, redirect, etc.
+        const message = await userStore.addUser(user.value);
+        console.log(message);
+        // Handle success, e.g., show a success message or redirect
       } catch (error) {
-        console.error(error.response.data.message);
+        console.error(error.message);
         // Handle errors, e.g., show error messages
       }
     },

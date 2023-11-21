@@ -24,6 +24,8 @@
   </template>
   
   <script>
+  import { baseUrl } from '../../utility/source.js';
+
   export default {
     data() {
       return {
@@ -37,7 +39,7 @@
       async fetchUserList() {
         try {
           // Fetch user list from your API endpoint (adjust the URL accordingly)
-          const response = await fetch('http://localhost:8000/api/users');
+          const response = await fetch(baseUrl +'/user-list');
           const data = await response.json();
           this.userList = data;
         } catch (error) {
