@@ -9,6 +9,7 @@
 </template>
 
   <script>
+  import { baseUrl } from '../../utility/source.js';
   export default {
     data() {
       return {
@@ -29,7 +30,7 @@
           const formData = new FormData();
           formData.append('csv_file', this.selectedFile);
   
-          const response = await axios.post('add-users-from-csv/api/add-users-from-csv', formData, {
+          const response = await axios.post(baseUrl + '/add-users-from-csv', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },

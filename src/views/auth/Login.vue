@@ -22,7 +22,7 @@
 
 <script>
 import axios from 'axios';
-// import { baseUrl } from '../../utility/source.js';
+import { baseUrl } from '../../utility/source.js';
 
 export default {
   data() {
@@ -36,7 +36,7 @@ export default {
   methods: {
     async loginUser() {
       try {
-        const response = await axios.post('http://localhost:8000/api/login', this.credentials);
+        const response = await axios.post(baseUrl +"/login", this.credentials);
         console.log(response.data);
         // Handle success, e.g., store token, redirect, etc.
       } catch (error) {
