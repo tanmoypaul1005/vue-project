@@ -15,6 +15,7 @@ import Loading from './components/Loading.vue'
           <RouterLink to="/" class="nav-link">Home</RouterLink>
           <RouterLink to="/login" class="nav-link">Login</RouterLink>
           <RouterLink to="/user/list" class="nav-link">UserList</RouterLink>
+          <RouterLink to="/csv" class="nav-link">Uplode Csv file</RouterLink>
         </nav>
       </div>
     </header>
