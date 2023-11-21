@@ -6,7 +6,8 @@
       <CommonInput label="Password" name="password" type="password" v-model="credentials.password" :is-required="true" />
 
       <div class="form-group">
-        <button type="submit" class="login-button">Login</button>
+        <!-- Use CommonButton component here -->
+        <CommonButton @click="loginUser">Login</CommonButton>
       </div>
     </form>
   </div>
@@ -14,11 +15,14 @@
 
 <script>
 import CommonInput from '@/components/CommonInput.vue';
+import CommonButton from '@/components/CommonButton.vue';
+
 import { useUserStore } from '@/stores/userStore';
 
 export default {
   components: {
     CommonInput,
+    CommonButton, // Don't forget to include CommonButton here
   },
   data() {
     return {
@@ -32,7 +36,7 @@ export default {
     async loginUser() {
       const userStore = useUserStore();
       try {
-        const message = await userStore.addUser(user.value);
+        const message = await userStore.addUser(this.credentials);
         console.log(message);
         // Handle success, e.g., show a success message or redirect
       } catch (error) {
@@ -84,7 +88,8 @@ export default {
   border-radius: 4px;
 }
 
-.login-button {
+/* Style for CommonButton component */
+.common-button {
   background-color: #3490dc;
   color: #fff;
   padding: 10px 15px;
@@ -94,7 +99,7 @@ export default {
   cursor: pointer;
 }
 
-.login-button:hover {
+.common-button:hover {
   background-color: #2779bd;
 }
 </style>

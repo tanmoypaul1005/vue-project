@@ -19,8 +19,11 @@
         <label for="name" class="label">Name</label>
         <input v-model="user.name" type="text" id="name" name="name" class="input" required>
       </div>
+   
+
       <div class="form-group">
-        <button type="submit" class="button">Add User</button>
+        <!-- Use CommonButton component here -->
+        <CommonButton @click="loginUser">Login</CommonButton>
       </div>
     </form>
   </div>
@@ -28,7 +31,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useUserStore } from '@/stores/userStore';
-
+import CommonButton from '@/components/CommonButton.vue';
 import CommonInput from '@/components/CommonInput.vue';
 
 const userStore = useUserStore();
