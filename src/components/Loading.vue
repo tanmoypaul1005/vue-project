@@ -8,9 +8,6 @@ const utility = useUtilityStore()
 <template>
     <div class="vl-parent">
         <loading v-model:active="utility.isLoading" :can-cancel="true" :on-cancel="onCancel" :is-full-page="fullPage" />
-
-        <!-- <label><input type="checkbox" v-model="fullPage">Full page?</label>
-            <button @click="utility.setLoading(true)">fetch Data</button> -->
     </div>
 </template>
 

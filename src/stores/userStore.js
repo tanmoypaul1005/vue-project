@@ -12,8 +12,6 @@ export const useUserStore = defineStore({
   }),
   actions: {
 
-    
-
     // add user
     async addUser(userData) {
       try {
