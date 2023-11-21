@@ -28,20 +28,43 @@ export const useUserStore = defineStore({
     },
 
 
+    //login
     async login(userData) {
       try {
         useUtilityStore().setLoading(true);
         const res= await axios.post(baseUrl +"/login", userData);
         if(res?.data?.success){
+          useUtilityStore().setLoading(false)
           return true
         }else{
+          useUtilityStore().setLoading(false)
           return false
         }
-        useUtilityStore().setLoading(false)
+
       } catch (error) {
         useUtilityStore().setLoading(false)
         throw new Error(error.res.data.message);
       }
     },
+
+    async fetchUserList() {
+      try {
+        useUtilityStore().setLoading(true);
+        const res = await axios.get(baseUrl +'/api/users'); // Adjust the API endpoint as needed
+        
+        if(res?.data?.success){
+          useUtilityStore().setLoading(false)
+          this.users = res.data;
+          return this.users; // You may return the data if needed in the component
+        }else{
+          useUtilityStore().setLoading(false)
+          return false
+        }
+      } catch (error) {
+        console.error('Error fetching user list:', error);
+        useUtilityStore().setLoading(false);
+      }
+    },
+
   },
 });
