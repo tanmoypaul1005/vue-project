@@ -4,11 +4,7 @@ import HomeView from '../views/HomeView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
+
     {
       path: '/about',
       name: 'about',
@@ -34,12 +30,30 @@ const router = createRouter({
       component: () => import('../views/TodoDetails.vue')
     },
     {
-      path: '/loading',
-      name: 'loading',
+      path: '/',
+      name: 'addUser',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../components/Loading.vue')
+      component: () => import('../views/user/AddUser.vue')
+    },
+
+    {
+      path: '/login',
+      name: 'login',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/auth/Login.vue')
+    },
+
+    {
+      path: '/user/list',
+      name: 'userlist',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/user/UserList.vue')
     }
   ]
 })
