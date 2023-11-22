@@ -8,46 +8,38 @@
   </div>
 </template>
 
-  <script>
-  import { baseUrl } from '../../utility/source.js';
-  export default {
-    data() {
-      return {
-        errorMessage: null,
-        successMessage: null,
-        selectedFile: null,
-      };
-    },
-    methods: {
-      handleFileChange(event) {
-        this.selectedFile = event.target.files[0];
-      },
-      async uploadCsv() {
-        this.errorMessage = null;
-        this.successMessage = null;
-  
-        try {
-          const formData = new FormData();
-          formData.append('csv_file', this.selectedFile);
-  
-          const response = await axios.post(baseUrl + '/add-users-from-csv', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-  
-          this.successMessage = response.data.message;
-        } catch (error) {
-          if (error.response) {
-            this.errorMessage = error.response.data.message;
-          } else {
-            this.errorMessage = 'An error occurred while processing the request.';
-          }
+// Your Vue component
+<script>
+import { useUserStore } from '@/stores/userStore';  // Update the path accordingly
+
+export default {
+  // ... (existing code)
+
+  methods: {
+    // ... (existing methods)
+
+    async uploadCsv() {
+      this.errorMessage = null;
+      this.successMessage = null;
+
+      try {
+        const formData = new FormData();
+        formData.append('csv_file', this.selectedFile);
+
+        const message = await useUserStore().uploadUsersFromCsv(formData);
+        this.successMessage = message;
+      } catch (error) {
+        if (error.response) {
+          this.errorMessage = error.response.data.message;
+        } else {
+          this.errorMessage = 'An error occurred while processing the request.';
         }
-      },
+      }
     },
-  };
-  </script>
+  },
+};
+</script>
+
   
   <style scoped>
   .csv-uploader {

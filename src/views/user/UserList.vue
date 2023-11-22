@@ -32,9 +32,9 @@ export default {
     const userStore = useUserStore();
     const userList = ref([]);
 
-    onMounted(() => {
-      fetchUserList();
-    });
+    // onMounted(() => {
+    //   fetchUserList();
+    // });
 
     const fetchUserList = async () => {
       try {

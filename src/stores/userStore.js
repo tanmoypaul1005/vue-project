@@ -59,13 +59,34 @@ export const useUserStore = defineStore({
           return this.users; // You may return the data if needed in the component
         }else{
           useUtilityStore().setLoading(false)
-          return false
+          return this.users; 
         }
       } catch (error) {
         console.error('Error fetching user list:', error);
         useUtilityStore().setLoading(false);
       }
     },
+
+
+    async uploadUsersFromCsv(formData) {
+      try {
+        useUtilityStore().setLoading(true);
+        const response = await axios.post(baseUrl + '/add-users-from-csv', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        if (response?.data?.success) {
+          useUtilityStore().setLoading(false);
+          return response.data.message;
+        }
+      } catch (error) {
+        useUtilityStore().setLoading(false);
+        throw new Error(error.response?.data?.message || 'An error occurred while processing the request.');
+      }
+    },
+
 
   },
 });
